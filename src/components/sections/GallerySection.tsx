@@ -1,12 +1,5 @@
-import type { Metadata } from "next";
 import GalleryGrid from "./GalleryGrid";
 import SectionHeading from "@/components/ui/SectionHeading";
-
-export const metadata: Metadata = {
-  title: "Gallery",
-  description:
-    "Browse our portfolio of stunning locs, braids, wigs, and styling work from The Esperience across Ottawa, Montréal, and NYC.",
-};
 
 const galleryItems = [
   { id: "g1", label: "Goddess Locs", category: "locs", span: "col-span-2 row-span-2" },
@@ -25,9 +18,9 @@ const galleryItems = [
 
 const filters = ["all", "locs", "braids", "wigs", "styling", "treatments"];
 
-export default function GalleryPage() {
+export default function GallerySection() {
   return (
-    <div className="pt-32 pb-24">
+    <section id="gallery" className="pt-32 pb-24 scroll-mt-20 relative">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading
           subtitle="Portfolio"
@@ -36,6 +29,6 @@ export default function GalleryPage() {
         />
         <GalleryGrid items={galleryItems} filters={filters} />
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,14 +1,6 @@
-import type { Metadata } from "next";
 import AnimateIn from "@/components/ui/AnimateIn";
 import SectionHeading from "@/components/ui/SectionHeading";
 import RoseGoldText from "@/components/ui/RoseGoldText";
-import Button from "@/components/ui/Button";
-
-export const metadata: Metadata = {
-  title: "About Us",
-  description:
-    "Learn about The Esperience — a premium Black-owned hair salon founded on artistry, authenticity, and the celebration of Black hair culture.",
-};
 
 const values = [
   {
@@ -37,9 +29,9 @@ const values = [
   },
 ];
 
-export default function AboutPage() {
+export default function AboutSection() {
   return (
-    <div className="pt-32 pb-24">
+    <section id="about" className="pt-32 pb-24 scroll-mt-20 relative">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading
           subtitle="Our Story"
@@ -138,21 +130,7 @@ export default function AboutPage() {
             </div>
           </div>
         </AnimateIn>
-
-        {/* CTA */}
-        <AnimateIn variant="fade-up" className="mt-20 text-center">
-          <h3 className="font-playfair text-3xl text-rose-gold-gradient mb-4">
-            Join Our Story
-          </h3>
-          <p className="font-montserrat font-light text-warm-gray mb-8 max-w-lg mx-auto">
-            Whether you&apos;re a first-time visitor or a loyal client, every
-            appointment is a new chapter in our shared journey.
-          </p>
-          <Button href="/booking" size="lg">
-            Book Your Experience
-          </Button>
-        </AnimateIn>
       </div>
-    </div>
+    </section>
   );
 }

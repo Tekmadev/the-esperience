@@ -3,6 +3,7 @@
 import { useRef, type ReactNode, type ButtonHTMLAttributes } from "react";
 import Link from "next/link";
 import { animate } from "animejs";
+import { useLenis } from "@/components/layout/SmoothScroll";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -36,14 +37,28 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const ref = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
+  const lenis = useLenis();
 
-  const handleClick = () => {
+  const handleClick = (e?: React.MouseEvent) => {
     if (!ref.current) return;
     animate(ref.current, {
       scale: [1, 0.95, 1.02, 1],
       duration: 400,
       ease: "outElastic(1, .6)",
     });
+
+    if (href && href.startsWith("#")) {
+      if (lenis) {
+        e?.preventDefault();
+        lenis.scrollTo(href, { offset: -80 });
+      } else {
+        const el = document.querySelector(href);
+        if (el) {
+          e?.preventDefault();
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }
   };
 
   const baseClasses = `
@@ -55,12 +70,30 @@ export default function Button({
   `.trim();
 
   if (href) {
+    if (href.startsWith("#")) {
+      return (
+        <a
+          href={href}
+          ref={ref as React.Ref<HTMLAnchorElement>}
+          className={baseClasses}
+          onClick={(e) => {
+            handleClick(e);
+            props.onClick?.(e as unknown as React.MouseEvent<HTMLButtonElement>);
+          }}
+        >
+          {children}
+        </a>
+      );
+    }
     return (
       <Link
         href={href}
         ref={ref as React.Ref<HTMLAnchorElement>}
         className={baseClasses}
-        onClick={handleClick}
+        onClick={(e) => {
+          handleClick(e as unknown as React.MouseEvent);
+          props.onClick?.(e as unknown as React.MouseEvent<HTMLButtonElement>);
+        }}
       >
         {children}
       </Link>

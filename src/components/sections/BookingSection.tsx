@@ -1,18 +1,11 @@
-import type { Metadata } from "next";
 import { Suspense } from "react";
 import AcuityEmbed from "@/components/booking/AcuityEmbed";
 import { BookingSkeleton } from "@/components/ui/SkeletonLoader";
 import SectionHeading from "@/components/ui/SectionHeading";
 
-export const metadata: Metadata = {
-  title: "Book an Appointment",
-  description:
-    "Book your premium hair appointment at The Esperience. Locs, braids, wigs, and more across Ottawa, Montréal, and NYC.",
-};
-
-export default function BookingPage() {
+export default function BookingSection() {
   return (
-    <div className="pt-32 pb-24">
+    <section id="booking" className="pt-32 pb-24 scroll-mt-20">
       <div className="max-w-4xl mx-auto px-6">
         <SectionHeading
           subtitle="Appointments"
@@ -59,6 +52,6 @@ export default function BookingPage() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

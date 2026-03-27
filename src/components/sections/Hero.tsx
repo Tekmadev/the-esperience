@@ -60,6 +60,7 @@ export default function Hero() {
 
   return (
     <section
+      id="home"
       ref={containerRef}
       className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden"
     >
@@ -91,10 +92,10 @@ export default function Hero() {
         </p>
 
         <div ref={ctaRef} className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button href="/booking" size="lg">
+          <Button href="#booking" size="lg">
             Book Your Experience
           </Button>
-          <Button href="/services" variant="outline" size="lg">
+          <Button href="#services" variant="outline" size="lg">
             Explore Services
           </Button>
         </div>

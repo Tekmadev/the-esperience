@@ -1,19 +1,21 @@
 import Hero from "@/components/sections/Hero";
-import ServicesPreview from "@/components/sections/ServicesPreview";
-import GalleryPreview from "@/components/sections/GalleryPreview";
+import AboutSection from "@/components/sections/AboutSection";
+import ServicesSection from "@/components/sections/ServicesSection";
+import GallerySection from "@/components/sections/GallerySection";
 import Testimonials from "@/components/sections/Testimonials";
-import LocationsPreview from "@/components/sections/LocationsPreview";
-import CTASection from "@/components/sections/CTASection";
+import BookingSection from "@/components/sections/BookingSection";
+import ContactSection from "@/components/sections/ContactSection";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <ServicesPreview />
-      <GalleryPreview />
+      <AboutSection />
+      <ServicesSection />
+      <GallerySection />
       <Testimonials />
-      <LocationsPreview />
-      <CTASection />
+      <BookingSection />
+      <ContactSection />
     </>
   );
 }

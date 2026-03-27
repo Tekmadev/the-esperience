@@ -5,14 +5,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { animate, stagger } from "animejs";
 import Button from "@/components/ui/Button";
+import { useLenis } from "@/components/layout/SmoothScroll";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/about", label: "About" },
-  { href: "/locations/ottawa", label: "Locations" },
-  { href: "/contact", label: "Contact" },
+  { href: "#home", label: "Home" },
+  { href: "#about", label: "About" },
+  { href: "#services", label: "Services" },
+  { href: "#gallery", label: "Gallery" },
+  { href: "#testimonials", label: "Testimonials" },
+  { href: "#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -21,6 +22,20 @@ export default function Navbar() {
   const pathname = usePathname();
   const menuRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
+  const lenis = useLenis();
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      setIsOpen(false);
+      if (lenis) {
+        lenis.scrollTo(href, { offset: -80 });
+      } else {
+        const el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -89,19 +104,16 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-10">
             {navLinks.map((link) => (
-              <Link
+              <a
                 key={link.href}
                 href={link.href}
-                className={`font-montserrat text-xs tracking-[0.2em] uppercase transition-colors duration-300 ${
-                  isActive(link.href)
-                    ? "text-rose-gold"
-                    : "text-charcoal hover:text-rose-gold"
-                }`}
+                onClick={(e) => handleLinkClick(e, link.href)}
+                className="font-montserrat text-xs tracking-[0.2em] uppercase transition-colors duration-300 text-charcoal hover:text-rose-gold"
               >
                 {link.label}
-              </Link>
+              </a>
             ))}
-            <Button href="/booking" size="sm">
+            <Button href="#booking" size="sm">
               Book Now
             </Button>
           </div>
@@ -139,18 +151,22 @@ export default function Navbar() {
       >
         <div ref={linksRef} className="flex flex-col items-center gap-8">
           {navLinks.map((link) => (
-            <Link
+            <a
               key={link.href}
               href={link.href}
-              className={`font-playfair text-3xl transition-colors duration-300 ${
-                isActive(link.href) ? "text-rose-gold-gradient" : "text-charcoal hover:text-rose-gold"
-              }`}
-              onClick={() => setIsOpen(false)}
+              className="font-playfair text-3xl transition-colors duration-300 text-charcoal hover:text-rose-gold"
+              onClick={(e) => handleLinkClick(e, link.href)}
             >
               {link.label}
-            </Link>
+            </a>
           ))}
-          <Button href="/booking" size="lg" className="mt-4">
+          <Button href="#booking" size="lg" className="mt-4" onClick={(e) => {
+            if (lenis) {
+              e.preventDefault();
+              setIsOpen(false);
+              lenis.scrollTo("#booking", { offset: -80 });
+            }
+          }}>
             Book Now
           </Button>
         </div>

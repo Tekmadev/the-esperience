@@ -30,7 +30,7 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section className="py-24 md:py-32 px-6 bg-white">
+    <section id="testimonials" className="py-24 md:py-32 px-6 bg-white scroll-mt-20">
       <div className="max-w-7xl mx-auto">
         <SectionHeading
           subtitle="Testimonials"
