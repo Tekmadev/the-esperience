@@ -129,6 +129,15 @@ body {
   100% { background-position: -200% 0; }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .text-rose-gold-gradient-animated {
+    animation: none;
+  }
+  .skeleton-rose {
+    animation: none;
+  }
+}
+
 /* Subheader Style */
 .subheader {
   font-family: var(--font-montserrat);

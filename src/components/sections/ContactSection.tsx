@@ -1,5 +1,6 @@
 import RoseGoldText from "@/components/ui/RoseGoldText";
 import Button from "@/components/ui/Button";
+import { FaInstagram, FaFacebookF, FaTiktok } from "react-icons/fa";
 
 export default function ContactSection() {
   return (
@@ -34,9 +35,9 @@ export default function ContactSection() {
             
             <h3 className="font-playfair text-2xl text-charcoal mt-12 mb-6">Socials</h3>
             <div className="flex gap-4">
-               <a href="#" className="w-12 h-12 border border-cream-dark flex items-center justify-center text-charcoal hover:text-white hover:bg-[#E1306C] hover:border-[#E1306C] transition-all duration-300 glimmer-hover text-sm tracking-widest">IG</a>
-               <a href="#" className="w-12 h-12 border border-cream-dark flex items-center justify-center text-charcoal hover:text-white hover:bg-[#1877F2] hover:border-[#1877F2] transition-all duration-300 glimmer-hover text-sm tracking-widest">FB</a>
-               <a href="#" className="w-12 h-12 border border-cream-dark flex items-center justify-center text-charcoal hover:text-white hover:bg-black hover:border-black transition-all duration-300 glimmer-hover text-sm tracking-widest">TT</a>
+               <a href="#" className="w-12 h-12 border border-cream-dark flex items-center justify-center text-charcoal hover:text-white hover:bg-[#E1306C] hover:border-[#E1306C] transition-all duration-300 glimmer-hover"><FaInstagram size={18} className="block" /></a>
+               <a href="#" className="w-12 h-12 border border-cream-dark flex items-center justify-center text-charcoal hover:text-white hover:bg-[#1877F2] hover:border-[#1877F2] transition-all duration-300 glimmer-hover"><FaFacebookF size={16} className="block" style={{ overflow: "visible" }} /></a>
+               <a href="#" className="w-12 h-12 border border-cream-dark flex items-center justify-center text-charcoal hover:text-white hover:bg-black hover:border-black transition-all duration-300 glimmer-hover"><FaTiktok size={16} className="block" style={{ overflow: "visible" }} /></a>
             </div>
           </div>
 

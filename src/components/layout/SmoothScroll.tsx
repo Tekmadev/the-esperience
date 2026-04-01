@@ -17,6 +17,9 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    const isTouchDevice = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+    if (isTouchDevice) return;
+
     const lenis = new Lenis({
       lerp: 0.1,
       smoothWheel: true,

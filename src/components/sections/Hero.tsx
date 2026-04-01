@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, Suspense } from "react";
+import { useEffect, useRef, Suspense, useState } from "react";
 import { gsap } from "gsap";
 import dynamic from "next/dynamic";
 import Button from "@/components/ui/Button";
@@ -16,6 +16,11 @@ export default function Hero() {
   const subRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    setIsDesktop(window.innerWidth >= 1024);
+  }, []);
 
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
@@ -64,9 +69,11 @@ export default function Hero() {
       ref={containerRef}
       className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden"
     >
-      <Suspense fallback={null}>
-        <SilkBackground />
-      </Suspense>
+      {isDesktop && (
+        <Suspense fallback={null}>
+          <SilkBackground />
+        </Suspense>
+      )}
 
       <div className="relative z-10 text-center max-w-4xl">
         <div
